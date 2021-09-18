@@ -5,7 +5,8 @@ import { wrapperEnv } from "./build/utils";
 import { createVitePlugins } from "./build/vite/plugin";
 import pkg from "./package.json";
 const { dependencies, devDependencies, name, version } = pkg;
-
+import { format } from "date-fns";
+import { createProxy } from "./build/vite/proxy";
 // https://vitejs.dev/config/
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir);
@@ -51,22 +52,19 @@ export default ({ command, mode }: ConfigEnv) => {
     define: {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
+    css: {
+      preprocessorOptions: {
+        less: {
+          modifyVars: {},
+          javascriptEnabled: true,
+          additionalData: `@import "src/styles/var.scss";`,
+        },
+      },
+    },
+    server: {
+      host: true,
+      port: VITE_PORT,
+      proxy: createProxy(VITE_PROXY),
+    },
   };
 };
-// export default defineConfig({
-//   plugins: [vue()],
-//   resolve: {
-//     alias: [
-//       {
-//         find: /\/#\//,
-//         replacement: pathResolve("types") + "/",
-//       },
-//       {
-//         find: "@",
-//         replacement: pathResolve("src") + "/",
-//       },
-//     ],
-//     dedupe: ["vue"],
-
-//   },
-// });
