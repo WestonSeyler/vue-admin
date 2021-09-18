@@ -3,10 +3,10 @@ import { resolve } from "path";
 import { wrapperEnv } from "./build/utils";
 import { createVitePlugins } from "./build/vite/plugin";
 import pkg from "./package.json";
+import { OUTPUT_DIR } from "./build/constant";
 const { dependencies, devDependencies, name, version } = pkg;
 import { format } from "date-fns";
 import { createProxy } from "./build/vite/proxy";
-// https://vitejs.dev/config/
 function pathResolve(dir: string) {
   return resolve(process.cwd(), ".", dir);
 }
@@ -64,6 +64,18 @@ export default ({ command, mode }: ConfigEnv) => {
       host: true,
       port: VITE_PORT,
       proxy: createProxy(VITE_PROXY),
+    },
+    build: {
+      target: "es2015",
+      outDir: OUTPUT_DIR,
+      terserOptions: {
+        compress: {
+          keep_infinity: true,
+          drop_console: VITE_DROP_CONSOLE,
+        },
+      },
+      brotliSize: false,
+      chunkSizeWarningLimit: 2000,
     },
   };
 };
