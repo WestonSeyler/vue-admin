@@ -1,5 +1,4 @@
 import { ConfigEnv, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import { wrapperEnv } from "./build/utils";
 import { createVitePlugins } from "./build/vite/plugin";
