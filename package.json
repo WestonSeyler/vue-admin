@@ -23,10 +23,10 @@
     "sass": "^1.41.1",
     "vfonts": "^0.1.0",
     "vue": "^3.2.6",
-    "vue-router": "^3.5.2",
+    "vue-router": "^4.0.11",
     "vue-types": "^4.0.0",
     "vuedraggable": "^4.0.3",
-    "vuex": "^3.6.2",
+    "vuex": "^4.0.2",
     "wowjoy-vui": "^2.18.2"
   },
   "devDependencies": {
