@@ -33,7 +33,7 @@ export default ({ command, mode }: ConfigEnv) => {
   const isBuild = command === "build";
   // console.log(env);
   return {
-    base: VITE_PUBLIC_PATH,
+    base: './',
     plugins: createVitePlugins(viteEnv, isBuild, prodMock),
     resolve: {
       alias: [
