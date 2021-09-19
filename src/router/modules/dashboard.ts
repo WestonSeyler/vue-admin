@@ -16,7 +16,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dashboard",
     name: routeName,
-    component: () => import("@/views/dashboard/index.vue"),
+    component: () => import("@/pages/dashboard/index.vue"),
     // meta: {
     //   title: "Dashboard",
     //   icon: renderIcon(DashboardOutlined),
