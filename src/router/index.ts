@@ -44,9 +44,8 @@ export const asyncRoutes = [];
 export const constantRouter: any[] = [LoginRoute, RootRoute];
 
 const router = createRouter({
-  history: createWebHashHistory(""),
+  history: createWebHashHistory("/vue-admin/"),
   routes: constantRouter,
-  strict: true,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });
 
