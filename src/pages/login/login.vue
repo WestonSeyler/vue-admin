@@ -1,5 +1,5 @@
 <template>
-  <div>login</div>
+  <div></div>
 </template>
 <script lang="ts" setup>
 import { defineComponent, onMounted } from "vue";

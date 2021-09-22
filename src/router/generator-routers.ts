@@ -36,7 +36,6 @@ export const routerGenerator = (routerMap: any[], parent?: any): any[] => {
         permissions: item.meta.permissions || null,
       },
     };
-
     // 为了防止出现后端返回结果不规范，处理有可能出现拼接出两个 反斜杠
     currentRouter.path = currentRouter.path.replace("//", "/");
     // 重定向
@@ -61,7 +60,6 @@ export const generatorDynamicRouter = (): Promise<RouteRecordRaw[]> => {
   return new Promise((resolve, reject) => {
     adminMenus()
       .then((result) => {
-        debugger
         const routeList = routerGenerator(result);
         asyncImportRoute(routeList);
         const asyncRoutesList = [...routeList, ...constantRouter];

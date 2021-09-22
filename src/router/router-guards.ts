@@ -21,6 +21,7 @@ export function createRouterGuards(router: Router) {
   router.beforeEach(async (to, from, next) => {
     //@ts-ignore
     const Loading = window["$loading"] || null;
+    console.log(Loading);
     Loading && Loading.start();
     if (from.path === LOGIN_PATH && to.name === "errorPage") {
       next(PageEnum.BASE_HOME);
