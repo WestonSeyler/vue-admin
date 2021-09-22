@@ -1,6 +1,7 @@
-import { isObject, isString } from '@/utils/is';
+import { Recordable } from "@/global";
+import { isObject, isString } from "@/utils/is";
 
-const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm';
+const DATE_TIME_FORMAT = "YYYY-MM-DD HH:mm";
 
 export function joinTimestamp<T extends boolean>(
   join: boolean,
@@ -9,7 +10,7 @@ export function joinTimestamp<T extends boolean>(
 
 export function joinTimestamp(join: boolean, restful = false): string | object {
   if (!join) {
-    return restful ? '' : {};
+    return restful ? "" : {};
   }
   const now = new Date().getTime();
   if (restful) {
@@ -22,7 +23,7 @@ export function joinTimestamp(join: boolean, restful = false): string | object {
  * @description: Format request parameter time
  */
 export function formatRequestDate(params: Recordable) {
-  if (Object.prototype.toString.call(params) !== '[object Object]') {
+  if (Object.prototype.toString.call(params) !== "[object Object]") {
     return;
   }
 
@@ -35,7 +36,7 @@ export function formatRequestDate(params: Recordable) {
       if (value) {
         try {
           params[key] = isString(value) ? value.trim() : value;
-        } catch (error) {
+        } catch (error: any) {
           throw new Error(error);
         }
       }

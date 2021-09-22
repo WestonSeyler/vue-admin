@@ -1,26 +1,26 @@
 // axios配置  可自行根据项目进行更改，只需更改该文件即可，其他文件可以不动
-import { VAxios } from './Axios';
-import { AxiosTransform } from './axiosTransform';
-import axios, { AxiosResponse } from 'axios';
-import { checkStatus } from './checkStatus';
-import { joinTimestamp, formatRequestDate } from './helper';
-import { RequestEnum, ResultEnum, ContentTypeEnum } from '@/enums/httpEnum';
-import { PageEnum } from '@/enums/pageEnum';
+import { VAxios } from "./Axios";
+import { AxiosTransform } from "./axiosTransform";
+import axios, { AxiosResponse } from "axios";
+import { checkStatus } from "./checkStatus";
+import { joinTimestamp, formatRequestDate } from "./helper";
+import { RequestEnum, ResultEnum, ContentTypeEnum } from "@/enums/httpEnum";
+import { PageEnum } from "@/enums/pageEnum";
 
-import { useGlobSetting } from '@/hooks/setting';
+import { useGlobSetting } from "@/hooks/setting";
 
-import { isString } from '@/utils/is/';
-import { setObjToUrlParams } from '@/utils/urlUtils';
+import { isString } from "@/utils/is/";
+import { setObjToUrlParams } from "@/utils/urlUtils";
 
-import { RequestOptions, Result } from './types';
+import { RequestOptions, Result } from "./types";
 
-import { useUserStoreWidthOut } from '@/store/modules/user';
+import { useUserStoreWidthOut } from "@/store/modules/user";
 
 const globSetting = useGlobSetting();
-const urlPrefix = globSetting.urlPrefix || '';
+const urlPrefix = globSetting.urlPrefix || "";
 
-import router from '@/router';
-import { storage } from '@/utils/Storage';
+import router from "@/router";
+import { storage } from "@/utils/Storage";
 
 /**
  * @description: 数据处理，方便区分多种处理方式
@@ -29,7 +29,10 @@ const transform: AxiosTransform = {
   /**
    * @description: 处理请求数据
    */
-  transformRequestData: (res: AxiosResponse<Result>, options: RequestOptions) => {
+  transformRequestData: (
+    res: AxiosResponse<Result>,
+    options: RequestOptions
+  ) => {
     // @ts-ignore
     const { $message: Message, $dialog: Modal } = window;
     const {
@@ -63,21 +66,22 @@ const transform: AxiosTransform = {
     //  这里 code，result，message为 后台统一的字段，需要在 types.ts内修改为项目自己的接口返回格式
     const { code, result, message } = data;
     // 请求成功
-    const hasSuccess = data && Reflect.has(data, 'code') && code === ResultEnum.SUCCESS;
+    const hasSuccess =
+      data && Reflect.has(data, "code") && code === ResultEnum.SUCCESS;
     // 是否显示提示信息
     if (isShowMessage) {
       if (hasSuccess && (successMessageText || isShowSuccessMessage)) {
         // 是否显示自定义信息提示
-        Message.success(successMessageText || message || '操作成功！');
+        Message.success(successMessageText || message || "操作成功！");
       } else if (!hasSuccess && (errorMessageText || isShowErrorMessage)) {
         // 是否显示自定义信息提示
-        Message.error(message || errorMessageText || '操作失败！');
-      } else if (!hasSuccess && options.errorMessageMode === 'modal') {
+        Message.error(message || errorMessageText || "操作失败！");
+      } else if (!hasSuccess && options.errorMessageMode === "modal") {
         // errorMessageMode=‘custom-modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
         Modal.info({
-          title: '提示',
+          title: "提示",
           content: message,
-          positiveText: '确定',
+          positiveText: "确定",
           onPositiveClick: () => {},
         });
       }
@@ -93,7 +97,7 @@ const transform: AxiosTransform = {
         Message.error(data.message);
         Promise.reject(new Error(message));
       } else {
-        const msg = '操作失败,系统异常!';
+        const msg = "操作失败,系统异常!";
         Message.error(msg);
         Promise.reject(new Error(msg));
       }
@@ -105,12 +109,12 @@ const transform: AxiosTransform = {
       const LoginName = PageEnum.BASE_LOGIN_NAME;
       if (router.currentRoute.value.name == LoginName) return;
       // 到登录页
-      const timeoutMsg = '登录超时,请重新登录!';
+      const timeoutMsg = "登录超时,请重新登录!";
       Modal.warning({
-        title: '提示',
-        content: '登录身份已失效，请重新登录!',
-        positiveText: '确定',
-        negativeText: '取消',
+        title: "提示",
+        content: "登录身份已失效，请重新登录!",
+        positiveText: "确定",
+        negativeText: "取消",
         onPositiveClick: () => {
           storage.clear();
           router.replace({
@@ -135,7 +139,13 @@ const transform: AxiosTransform = {
 
   // 请求之前处理config
   beforeRequestHook: (config, options) => {
-    const { apiUrl, joinPrefix, joinParamsToUrl, formatDate, joinTime = true } = options;
+    const {
+      apiUrl,
+      joinPrefix,
+      joinParamsToUrl,
+      formatDate,
+      joinTime = true,
+    } = options;
 
     if (joinPrefix) {
       config.url = `${urlPrefix}${config.url}`;
@@ -149,7 +159,10 @@ const transform: AxiosTransform = {
     if (config.method?.toUpperCase() === RequestEnum.GET) {
       if (!isString(params)) {
         // 给 get 请求加上时间戳参数，避免从缓存中拿数据。
-        config.params = Object.assign(params || {}, joinTimestamp(joinTime, false));
+        config.params = Object.assign(
+          params || {},
+          joinTimestamp(joinTime, false)
+        );
       } else {
         // 兼容restful风格
         config.url = config.url + params + `${joinTimestamp(joinTime, true)}`;
@@ -158,7 +171,11 @@ const transform: AxiosTransform = {
     } else {
       if (!isString(params)) {
         formatDate && formatRequestDate(params);
-        if (Reflect.has(config, 'data') && config.data && Object.keys(config.data).length) {
+        if (
+          Reflect.has(config, "data") &&
+          config.data &&
+          Object.keys(config.data).length
+        ) {
           config.data = data;
           config.params = params;
         } else {
@@ -203,23 +220,25 @@ const transform: AxiosTransform = {
     const { response, code, message } = error || {};
     // TODO 此处要根据后端接口返回格式修改
     const msg: string =
-      response && response.data && response.data.message ? response.data.message : '';
+      response && response.data && response.data.message
+        ? response.data.message
+        : "";
     const err: string = error.toString();
     try {
-      if (code === 'ECONNABORTED' && message.indexOf('timeout') !== -1) {
-        Message.error('接口请求超时,请刷新页面重试!');
+      if (code === "ECONNABORTED" && message.indexOf("timeout") !== -1) {
+        Message.error("接口请求超时,请刷新页面重试!");
         return;
       }
-      if (err && err.includes('Network Error')) {
+      if (err && err.includes("Network Error")) {
         Modal.info({
-          title: '网络异常',
-          content: '请检查您的网络连接是否正常!',
-          positiveText: '确定',
+          title: "网络异常",
+          content: "请检查您的网络连接是否正常!",
+          positiveText: "确定",
           onPositiveClick: () => {},
         });
         return;
       }
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(error);
     }
     // 请求是否被取消
@@ -227,7 +246,7 @@ const transform: AxiosTransform = {
     if (!isCancel) {
       checkStatus(error.response && error.response.status, msg, Message);
     } else {
-      console.warn(error, '请求被取消！');
+      console.warn(error, "请求被取消！");
     }
     return error;
   },
@@ -237,7 +256,7 @@ const Axios = new VAxios({
   timeout: 10 * 1000,
   // 接口前缀
   prefixUrl: urlPrefix,
-  headers: { 'Content-Type': ContentTypeEnum.JSON },
+  headers: { "Content-Type": ContentTypeEnum.JSON },
   // 数据处理方式
   transform,
   // 配置项，下面的选项都可以在独立的接口请求中覆盖
@@ -253,7 +272,7 @@ const Axios = new VAxios({
     // 格式化提交参数时间
     formatDate: true,
     // 消息提示类型
-    errorMessageMode: 'none',
+    errorMessageMode: "none",
     // 接口地址
     apiUrl: globSetting.apiUrl as string,
   },

@@ -3,7 +3,7 @@ node_modules
 /screenshots
 dist.zip
 dist_electron
-
+/dist
 # local env files
 .env.local
 .env.*.local
