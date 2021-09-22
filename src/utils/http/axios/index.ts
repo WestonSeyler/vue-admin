@@ -7,7 +7,7 @@ import { joinTimestamp, formatRequestDate } from "./helper";
 import { RequestEnum, ResultEnum, ContentTypeEnum } from "@/enums/httpEnum";
 import { PageEnum } from "@/enums/pageEnum";
 
-import { useGlobSetting } from "@/hooks/setting";
+import { useGlobSetting } from "@/hooks/setting/";
 
 import { isString } from "@/utils/is/";
 import { setObjToUrlParams } from "@/utils/urlUtils";

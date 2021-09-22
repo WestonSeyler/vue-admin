@@ -42,3 +42,7 @@ export interface GlobEnvConfig {
   //生产环境开启mock
   VITE_GLOB_PROD_MOCK: boolean;
 }
+export interface IheaderSetting {}
+export interface ImenuSetting {}
+export interface ImultiTabsSetting {}
+export interface IcrumbsSetting {}

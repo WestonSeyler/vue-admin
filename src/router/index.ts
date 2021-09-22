@@ -1,5 +1,6 @@
 import { App } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { createRouterGuards } from "./router-guards";
 
 // @ts-ignore
 const modules = import.meta.globEager("./modules/**/*.ts");
@@ -11,13 +12,6 @@ Object.keys(modules).forEach((key) => {
   const modList = Array.isArray(mod) ? [...mod] : [mod];
   routeModuleList.push(...modList);
 });
-
-// function sortRoute(a, b) {
-//   return (a.meta?.sort || 0) - (b.meta?.sort || 0);
-// }
-
-// routeModuleList.sort(sortRoute);
-
 export const RootRoute: RouteRecordRaw = {
   path: "/",
   name: "Root",
@@ -52,7 +46,7 @@ const router = createRouter({
 export function setupRouter(app: App) {
   app.use(router);
   // 创建路由守卫
-  //   createRouterGuards(router);
+  createRouterGuards(router);
 }
 
 export default router;
