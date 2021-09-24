@@ -6,6 +6,7 @@ import { RouteRecordRaw } from "vue-router";
 import { Layout, ParentLayout } from "@/router/constant";
 import type { AppRouteRecordRaw } from "@/router/types";
 import { Recordable } from "@/global";
+import { constantRouterIcon } from "./router-icons";
 
 // const Iframe = () => import("@/pages/iframe/index.vue");
 const LayoutMap = new Map<string, () => Promise<typeof import("*.vue")>>();
@@ -19,7 +20,7 @@ LayoutMap.set("LAYOUT", Layout);
  * @param parent
  * @returns {*}
  */
-export const routerGenerator = (routerMap: any[], parent?: any): any[] => {
+export const routerGenerator = (routerMap: any, parent?: any): any[] => {
   return routerMap.map((item) => {
     const currentRouter: any = {
       // 路由地址 动态拼接生成如 /dashboard/workplace
@@ -32,7 +33,8 @@ export const routerGenerator = (routerMap: any[], parent?: any): any[] => {
       meta: {
         ...item.meta,
         label: item.meta.title,
-        // icon: constantRouterIcon[item.meta.icon] || null,
+        //@ts-ignore
+        icon: constantRouterIcon[item.meta.icon] || null,
         permissions: item.meta.permissions || null,
       },
     };

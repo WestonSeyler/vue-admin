@@ -5,6 +5,3 @@ Object.keys(allModules).forEach((path) => {
   modules[fileName] =
     allModules[path][fileName] || allModules[path].default || allModules[path];
 });
-export default {
-
-};

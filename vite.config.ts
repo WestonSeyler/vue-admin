@@ -53,10 +53,10 @@ export default ({ command, mode }: ConfigEnv) => {
     },
     css: {
       preprocessorOptions: {
-        less: {
+        scss: {
           modifyVars: {},
           javascriptEnabled: true,
-          additionalData: `@import "src/styles/var.scss";`,
+          additionalData: `@import "@/styles/var.scss";`,
         },
       },
     },

@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from "vue-router";
 import { isNavigationFailure, Router } from "vue-router";
+
 import { useUserStoreWidthOut } from "@/store/modules/user";
 import { useAsyncRouteStoreWidthOut } from "@/store/modules/asyncRoute";
 import { ACCESS_TOKEN } from "@/store/mutation-types";
@@ -64,9 +65,7 @@ export function createRouterGuards(router: Router) {
       next();
       return;
     }
-
     const userInfo = await userStore.GetInfo();
-
     const routes = await asyncRouteStore.generateRoutes(userInfo);
 
     // 动态添加可访问路由表

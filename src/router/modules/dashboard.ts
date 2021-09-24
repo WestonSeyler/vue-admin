@@ -1,4 +1,6 @@
+import { renderIcon } from "@/utils";
 import { RouteRecordRaw } from "vue-router";
+import { DashboardOutlined } from "@vicons/antd";
 
 const routeName = "dashboard";
 
@@ -16,47 +18,34 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/dashboard",
     name: routeName,
-    component: () => import("@/pages/dashboard/console/console.vue"),
-    // meta: {
-    //   title: "Dashboard",
-    //   icon: renderIcon(DashboardOutlined),
-    //   permissions: [
-    //     "dashboard_console",
-    //     "dashboard_console",
-    //     "dashboard_workplace",
-    //   ],
-    //   sort: 0,
-    // },
-    // children: [
-    //   {
-    //     path: "console",
-    //     name: `${routeName}_console`,
-    //     meta: {
-    //       title: "主控台",
-    //       permissions: ["dashboard_console"],
-    //     },
-    //     component: () => import("@/views/dashboard/console/console.vue"),
-    //   },
-    //   // {
-    //   //   path: 'monitor',
-    //   //   name: `${ routeName }_monitor`,
-    //   //   meta: {
-    //   //     title: '监控页',
-    //   //     permissions: ['dashboard_monitor']
-    //   //   },
-    //   //   component: () => import('@/views/dashboard/monitor/monitor.vue')
-    //   // },
-    //   {
-    //     path: "workplace",
-    //     name: `${routeName}_workplace`,
-    //     meta: {
-    //       title: "工作台",
-    //       keepAlive: true,
-    //       permissions: ["dashboard_workplace"],
-    //     },
-    //     component: () => import("@/views/dashboard/workplace/workplace.vue"),
-    //   },
-    // ],
+    component: () => import("@/layout/index.vue"),
+    meta: {
+      title: "Dashboard",
+      icon: renderIcon(DashboardOutlined),
+      permissions: ["dashboard_console", "dashboard_workplace"],
+      sort: 0,
+    },
+    children: [
+      {
+        path: "console",
+        name: `${routeName}_console`,
+        meta: {
+          title: "主控台",
+          permissions: ["dashboard_console"],
+        },
+        component: () => import("@/pages/dashboard/console/console.vue"),
+      },
+      {
+        path: "monitor",
+        name: `${routeName}monitor`,
+        meta: {
+          title: "工作台",
+          keepAlive: true,
+          permissions: ["dashboard_workplace"],
+        },
+        component: () => import("@/pages/dashboard/monitor/monitor.vue"),
+      },
+    ],
   },
 ];
 

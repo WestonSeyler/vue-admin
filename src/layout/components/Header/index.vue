@@ -1,66 +1,39 @@
 <template>
   <div class="layout-header">
     <!--顶部菜单-->
-    <div class="layout-header-left">
-      <div class="logo">
-        <!-- <img src="~@/assets/images/logo.png" alt="" /> -->
-        <!-- <h2 v-show="!collapsed" class="title">Wowjoy</h2> -->
-      </div>
-      <!-- <AsideMenu
-        v-model:collapsed="collapsed"
-        v-model:location="getMenuLocation"
-        :inverted="getInverted"
-        mode="horizontal"
-      /> -->
-    </div>
     <!--左侧菜单-->
     <div class="layout-header-left">
       <!-- 菜单收起 -->
-      <div class="ml-1 layout-header-trigger layout-header-trigger-min">
-        <MenuUnfoldOutlined />
-
+      <div
+        class="ml-1 layout-header-trigger layout-header-trigger-min"
+        @click="() => $emit('update:collapsed', !collapsed)"
+      >
         <!-- 菜单展开 -->
-        <!-- <n-icon size="18" v-if="collapsed">
+        <n-icon size="18" v-if="collapsed">
           <MenuUnfoldOutlined />
         </n-icon>
         <n-icon size="18" v-else>
           <MenuFoldOutlined />
-        </n-icon> -->
+        </n-icon>
       </div>
       <!-- 刷新 -->
-      <div class="mr-1 layout-header-trigger layout-header-trigger-min">
+      <!-- <div class="mr-1 layout-header-trigger layout-header-trigger-min">
         <n-icon size="18">
           <ReloadOutlined />
         </n-icon>
+      </div> -->
+      <div class="breadcrumb">
+        <n-breadcrumb>
+          <template v-for="routeItem in breadcrumbList" :key="routeItem.name">
+            <n-breadcrumb-item>
+              {{ routeItem.meta.title }}
+            </n-breadcrumb-item>
+          </template>
+        </n-breadcrumb>
       </div>
       <!-- 面包屑 -->
-      <n-breadcrumb v-if="crumbsSetting.show">
-        <template v-for="routeItem in breadcrumbList" :key="routeItem.name">
-          <n-breadcrumb-item>
-            <n-dropdown
-              v-if="routeItem.children.length"
-              :options="routeItem.children"
-              @select="dropdownSelect"
-            >
-              <span class="link-text">
-                <component
-                  v-if="crumbsSetting.showIcon && routeItem.meta.icon"
-                  :is="routeItem.meta.icon"
-                />
-                {{ routeItem.meta.title }}
-              </span>
-            </n-dropdown>
-            <span class="link-text" v-else>
-              <component
-                v-if="crumbsSetting.showIcon && routeItem.meta.icon"
-                :is="routeItem.meta.icon"
-              />
-              {{ routeItem.meta.title }}
-            </span>
-          </n-breadcrumb-item>
-        </template>
-      </n-breadcrumb>
     </div>
+
     <div class="layout-header-right">
       <!-- <div
         class="layout-header-trigger layout-header-trigger-min"
@@ -90,7 +63,7 @@
       <!-- 个人中心 -->
       <div class="layout-header-trigger layout-header-trigger-min">
         <!-- 个人中心 -->
-        <!-- <n-dropdown
+        <n-dropdown
           trigger="hover"
           @select="avatarSelect"
           :options="avatarOptions"
@@ -103,10 +76,10 @@
               </template>
             </n-avatar>
           </div>
-        </n-dropdown> -->
+        </n-dropdown>
       </div>
       <!--设置-->
-      <div
+      <!-- <div
         class="layout-header-trigger layout-header-trigger-min"
         @click="openSetting"
       >
@@ -118,7 +91,7 @@
           </template>
           <span>项目配置</span>
         </n-tooltip>
-      </div>
+      </div> -->
     </div>
   </div>
   <!--项目配置-->
@@ -127,71 +100,133 @@
 <script lang="ts" >
 import { defineComponent, reactive, toRefs, ref, computed, unref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+
 import components from "./components";
 import { NDialogProvider, useDialog, useMessage } from "wowjoy-vui";
 import { TABS_ROUTES } from "@/store/mutation-types";
 import { useUserStore } from "@/store/modules/user";
-//锁屏
-// import { useLockscreenStore } from "@/store/modules/lockscreen";
-//配置
-// import ProjectSetting from "./ProjectSetting.vue";
-//菜单
-// import { AsideMenu } from "@/layout/components/Menu";
-// import { useProjectSetting } from "@/hooks/setting/useProjectSetting";
-
 export default defineComponent({
   name: "PageHeader",
+  components: { ...components },
+  props: {
+    collapsed: {
+      type: Boolean,
+    },
+  },
   setup() {
     const userStore = useUserStore();
     const message = useMessage();
     const dialog = useDialog();
+    const router = useRouter();
+    const route = useRoute();
+
+    //用户信息
+    const { username } = userStore?.info || {};
+    const state = reactive({
+      username: username || "",
+    });
+    const generator: any = (routerMap: any) => {
+      return routerMap.map((item: any) => {
+        const currentMenu = {
+          ...item,
+          label: item.meta.title,
+          key: item.name,
+          disabled: item.path === "/",
+        };
+        // 是否有子菜单，并递归处理
+        if (item.children && item.children.length > 0) {
+          // Recursion
+          currentMenu.children = generator(item.children, currentMenu);
+        }
+        return currentMenu;
+      });
+    };
+    //面包屑
+    const breadcrumbList = computed(() => {
+      return generator(route.matched);
+    });
+    console.log(breadcrumbList.value);
+
+    //个人设置
+    const avatarOptions = [
+      {
+        label: "个人设置",
+        key: 1,
+      },
+      {
+        label: "退出登录",
+        key: 2,
+      },
+    ];
+    // 退出登录
+    const doLogout = () => {
+      dialog.info({
+        title: "提示",
+        content: "您确定要退出登录吗",
+        positiveText: "确定",
+        negativeText: "取消",
+        onPositiveClick: () => {
+          userStore.logout().then(() => {
+            message.success("成功退出登录");
+            // 移除标签页
+            // localStorage.removeItem(TABS_ROUTES);
+            router
+              .replace({
+                name: "Login",
+                query: {
+                  redirect: route.fullPath,
+                },
+              })
+              .finally(() => location.reload());
+          });
+        },
+        onNegativeClick: () => {},
+      });
+    };
+
+    //头像下拉菜单
+    const avatarSelect = (key: number) => {
+      switch (key) {
+        case 1:
+          router.push({ name: "Setting" });
+          break;
+        case 2:
+          doLogout();
+          break;
+      }
+    };
+
+    return {
+      avatarOptions,
+      avatarSelect,
+      username,
+      breadcrumbList,
+    };
   },
 });
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .layout-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  height: @header-height;
+  height: $header-height;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   transition: all 0.2s ease-in-out;
-  width: 100%;
+  // width: 100%;
   z-index: 11;
-
+  .breadcrumb {
+    display: flex;
+  }
   &-left {
     display: flex;
+    // flex: 1;
     align-items: center;
-
-    .logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 64px;
-      line-height: 64px;
-      overflow: hidden;
-      white-space: nowrap;
-      padding-left: 10px;
-
-      img {
-        width: auto;
-        height: 32px;
-        margin-right: 10px;
-      }
-
-      .title {
-        margin-bottom: 0;
-      }
-    }
-
+    width: 400px;
     ::v-deep(.ant-breadcrumb span:last-child .link-text) {
       color: #515a6e;
-    }
-
-    .n-breadcrumb {
-      display: inline-block;
     }
 
     &-menu {
@@ -203,7 +238,6 @@ export default defineComponent({
     display: flex;
     align-items: center;
     margin-right: 20px;
-
     .avatar {
       display: flex;
       align-items: center;
@@ -255,11 +289,11 @@ export default defineComponent({
   }
 
   .layout-header-left {
-    ::v-deep(.n-breadcrumb
-        .n-breadcrumb-item:last-child
-        .n-breadcrumb-item__link) {
-      color: #515a6e;
-    }
+    // ::v-deep(.n-breadcrumb
+    //     .n-breadcrumb-item:last-child
+    //     .n-breadcrumb-item__link) {
+    //   color: #515a6e;
+    // }
   }
 
   .layout-header-trigger {

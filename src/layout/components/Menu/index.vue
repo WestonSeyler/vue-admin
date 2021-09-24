@@ -1,7 +1,6 @@
 <template>
   <NMenu
     :options="menus"
-    :inverted="inverted"
     :mode="mode"
     :collapsed="collapsed"
     :collapsed-width="64"
@@ -17,19 +16,17 @@
 import {
   defineComponent,
   ref,
-  onMounted,
   reactive,
   computed,
   watch,
   toRefs,
   unref,
+  onMounted,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAsyncRouteStore } from "@/store/modules/asyncRoute";
-import { generatorMenu, generatorMenuMix } from "@/utils";
 import { useProjectSettingStore } from "@/store/modules/projectSetting";
-import { useProjectSetting } from "@/hooks/setting/useProjectSetting";
-
+import { generatorMenu } from "@/utils";
 export default defineComponent({
   props: {
     mode: {
@@ -46,10 +43,8 @@ export default defineComponent({
     const currentRoute = useRoute();
     const router = useRouter();
     const asyncRouteStore = useAsyncRouteStore();
-    const settingStore = useProjectSettingStore();
     const menus = ref<any[]>([]);
     const selectedKeys = ref<string>(currentRoute.name as string);
-    const headerMenuSelectKey = ref<string>("");
     const matched = currentRoute.matched;
     const getOpenKeys =
       matched && matched.length ? matched.map((item) => item.name) : [];
@@ -57,17 +52,9 @@ export default defineComponent({
     const state = reactive({
       openKeys: getOpenKeys,
     });
-    const getSelectedKeys = computed(() => unref(selectedKeys));
-    // 监听分割菜单
-    // watch(
-    //   () => settingStore.menuSetting.mixMenu,
-    //   () => {
-    //     updateMenu();
-    //     if (props.collapsed) {
-    //       emit("update:collapsed", !props.collapsed);
-    //     }
-    //   }
-    // );
+    const getSelectedKeys = computed(() => {
+      return unref(selectedKeys.value);
+    });
     // 监听菜单收缩状态
     watch(
       () => props.collapsed,
@@ -84,6 +71,22 @@ export default defineComponent({
         router.push({ name: key });
       }
     }
+    function updateMenu() {
+      menus.value = generatorMenu(asyncRouteStore.getMenus);
+    }
+    watch(
+      () => currentRoute.fullPath,
+      () => {
+        updateMenu();
+        const matched = currentRoute.matched;
+        state.openKeys = matched.map((item) => item.name);
+        const activeMenu: string =
+          (currentRoute.meta?.activeMenu as string) || "";
+        selectedKeys.value = activeMenu
+          ? (activeMenu as string)
+          : (currentRoute.name as string);
+      }
+    );
     //展开菜单
     function menuExpanded(openKeys: string[]) {
       if (!openKeys) return;
@@ -109,11 +112,14 @@ export default defineComponent({
       }
       return subRouteChildren.includes(key);
     }
+    onMounted(() => {
+      updateMenu();
+      console.log(menus.value);
+    });
     return {
       ...toRefs(state),
       menus,
       selectedKeys,
-      headerMenuSelectKey,
       getSelectedKeys,
       clickMenuItem,
       menuExpanded,

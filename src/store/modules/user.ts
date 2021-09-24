@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { store } from "@/store";
 import { ACCESS_TOKEN, CURRENT_USER } from "../mutation-types";
-import { createStorage } from "@/utils/Storage";
+import { createStorage, storage } from "@/utils/Storage";
 import { getUserInfo } from "@/api/system/user";
 const Storage = createStorage({ storage: localStorage });
 
@@ -63,6 +63,14 @@ export const useUserStore = defineStore({
             reject(error);
           });
       });
+    },
+    // 登出
+    async logout() {
+      this.setPermissions([]);
+      this.setUserInfo("");
+      storage.remove(ACCESS_TOKEN);
+      storage.remove(CURRENT_USER);
+      return Promise.resolve("");
     },
   },
 });

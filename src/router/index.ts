@@ -31,7 +31,7 @@ export const LoginRoute: RouteRecordRaw = {
 };
 
 //需要验证权限
-export const asyncRoutes = [];
+export const asyncRoutes = [...routeModuleList];
 
 //普通路由 无需验证权限
 // export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];

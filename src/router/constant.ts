@@ -1,7 +1,6 @@
 export const RedirectName = "Redirect";
 //重定向页面
-
-export const ErrorPage = () => import("@/pages/exception/404.vue");
+export const ErrorPage = () => import("@/views/exception/404.vue");
 
 export const Layout = () => import("@/layout/index.vue");
 

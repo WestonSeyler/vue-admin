@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { RouteRecordRaw } from "vue-router";
 import { store } from "@/store";
 import { asyncRoutes, constantRouter } from "@/router/index";
-import { generatorDynamicRouter } from '@/router/generator-routers';
+import { generatorDynamicRouter } from "@/router/generator-routers";
 import { useProjectSetting } from "@/hooks/setting/useProjectSetting";
 
 interface TreeHelperConfig {
@@ -116,6 +116,7 @@ export const useAsyncRouteStore = defineStore({
             [...asyncRoutes, ...constantRouter],
             routeFilter
           );
+          // accessedRouters = await generatorDynamicRouter();
         } catch (error) {
           console.log(error);
         }
