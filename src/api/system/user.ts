@@ -25,7 +25,7 @@ export function getUserInfo() {
 /**
  * @description: 用户登录
  */
-export function login(params) {
+export function login(params:any) {
   return http.request<BasicResponseModel>(
     {
       url: "/login",

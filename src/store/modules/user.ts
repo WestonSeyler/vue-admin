@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 import { store } from "@/store";
 import { ACCESS_TOKEN, CURRENT_USER } from "../mutation-types";
 import { createStorage, storage } from "@/utils/Storage";
-import { getUserInfo } from "@/api/system/user";
+import { getUserInfo, login } from "@/api/system/user";
+import { ResultEnum } from "@/enums/httpEnum";
 const Storage = createStorage({ storage: localStorage });
 
 export interface IUserState {
@@ -40,6 +41,23 @@ export const useUserStore = defineStore({
     },
     setUserInfo(info: any) {
       this.info = info;
+    },
+    // 登录
+    async login(userInfo: any) {
+      try {
+        const response = await login(userInfo);
+        const { result, code } = response;
+        if (code === ResultEnum.SUCCESS) {
+          const ex = 7 * 24 * 60 * 60 * 1000;
+          storage.set(ACCESS_TOKEN, result.token, ex);
+          storage.set(CURRENT_USER, result, ex);
+          this.setToken(result.token);
+          this.setUserInfo(result);
+        }
+        return Promise.resolve(response);
+      } catch (e) {
+        return Promise.reject(e);
+      }
     },
     GetInfo() {
       const that = this;

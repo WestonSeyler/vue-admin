@@ -37,6 +37,7 @@ export function createRouterGuards(router: Router) {
     const token = storage.get(ACCESS_TOKEN);
 
     if (!token) {
+      debugger
       //可以设置不适用权限进行访问
       if (to.meta.ignoreAuth) {
         next();
