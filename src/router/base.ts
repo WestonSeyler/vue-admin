@@ -13,7 +13,7 @@ export const ErrorPageRoute: AppRouteRecordRaw = {
   children: [
     {
       path: "/:path(.*)*",
-      name: "ErrorPageSon",
+      name: "ErrorPage",
       component: ErrorPage,
       meta: {
         title: "ErrorPage",
@@ -35,7 +35,7 @@ export const RedirectRoute: AppRouteRecordRaw = {
     {
       path: "/redirect/:path(.*)",
       name: RedirectName,
-      // component: () => import("@/pages/redirect/index.vue"),
+      component: () => import("@/pages/redirect/index.vue"),
       meta: {
         title: RedirectName,
         hideBreadcrumb: true,

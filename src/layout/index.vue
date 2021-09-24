@@ -59,13 +59,13 @@ onMounted(() => {
   window.addEventListener("resize", watchWidth);
   //挂载在 window 方便与在js中使用
   //@ts-ignore
-  window["$loading"] = useLoadingBar();
+  // window["$loading"] = useLoadingBar();
   //@ts-ignore
-  window["$loading"].start();
-  setTimeout(() => {
-    //@ts-ignore
-    window["$loading"].finish();
-  }, 100);
+  // window["$loading"].finish();
+  // setTimeout(() => {
+  //   //@ts-ignore
+  //   window["$loading"].finish();
+  // }, 100);
 });
 </script>
 

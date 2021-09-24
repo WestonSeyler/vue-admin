@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import "./styles/tailwind.scss";
+import "./styles/tailwind.css";
 import { setupStore } from "@/store";
 import { setupRouter } from "./router";
 import { setupNaive } from "@/plugins";

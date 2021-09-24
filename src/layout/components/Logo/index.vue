@@ -1,11 +1,13 @@
 <template>
   <div class="logo">
     <img
-      src="https://vui.rubikstack.com/assets/naivelogo.a7a9a3a6.svg"
+      src="@/assets/images/logo.svg"
       alt=""
-      :class="{ 'mr-2': !collapsed }"
+      :class="{ 'mr-3': !collapsed }"
+      width="32px"
+      height="32px"
     />
-    <h2 v-show="!collapsed" class="title">Wowjoy-Admin</h2>
+    <h2 v-show="!collapsed" class="title">Wowjoy</h2>
   </div>
 </template>
 

@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       title: '组件库文档',
       icon: renderIcon(DocumentTextOutline),
-      sort: 9,
+      sort: 2,
     },
   },
 ];

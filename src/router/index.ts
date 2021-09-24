@@ -1,6 +1,8 @@
 import { App } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { RedirectRoute } from "@/router/base";
 import { createRouterGuards } from "./router-guards";
+import { PageEnum } from "@/enums/pageEnum";
 
 // @ts-ignore
 const modules = import.meta.globEager("./modules/**/*.ts");
@@ -15,7 +17,7 @@ Object.keys(modules).forEach((key) => {
 export const RootRoute: RouteRecordRaw = {
   path: "/",
   name: "Root",
-  redirect: "/login",
+  redirect: PageEnum.BASE_HOME_REDIRECT,
   meta: {
     title: "Root",
   },
@@ -35,7 +37,7 @@ export const asyncRoutes = [...routeModuleList];
 
 //普通路由 无需验证权限
 // export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
-export const constantRouter: any[] = [LoginRoute, RootRoute];
+export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
 
 const router = createRouter({
   history: createWebHashHistory("/vue-admin/"),
