@@ -28,6 +28,9 @@ export const useUserStore = defineStore({
     getToken(): string {
       return this.token;
     },
+    getPermissions(): [any][] {
+      return this.permissions;
+    },
   },
   actions: {
     setToken(token: string) {

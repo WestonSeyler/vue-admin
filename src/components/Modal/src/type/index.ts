@@ -1,14 +1,18 @@
-import { DialogOptions } from "wowjoy-vui";
+import type { DialogOptions } from 'naive-ui/lib/dialog';
 /**
- *  @description: 弹窗对外暴露的方法
+ * @description: 弹窗对外暴露的方法
  */
 export interface ModalMethods {
-  setProps: (props: any) => void;
+  setProps: (props) => void;
   openModal: () => void;
   closeModal: () => void;
-  setSubLoading: (status: any) => void;
+  setSubLoading: (status) => void;
 }
-export interface ModalProps extends DialogOptions {}
+
+/**
+ * 支持修改，DialogOptions 參數
+ */
+export interface ModalProps extends DialogOptions { }
 
 export type RegisterFn = (ModalInstance: ModalMethods) => void;
 

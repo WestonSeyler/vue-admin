@@ -1,10 +1,11 @@
-import { NModal } from "wowjoy-vui";
-// ..NModal.props
+import { NModal } from 'wowjoy-vui';
+
 export const basicProps = {
   ...NModal.props,
+  // 确认按钮文字
   subBtuText: {
     type: String,
-    default: "确认",
+    default: '确认',
   },
   showIcon: {
     type: Boolean,
@@ -12,11 +13,11 @@ export const basicProps = {
   },
   width: {
     type: Number,
-    default: 446,
+    default: 500,
   },
   title: {
     type: String,
-    default: "",
+    default: '',
   },
   maskClosable: {
     type: Boolean,
@@ -24,6 +25,6 @@ export const basicProps = {
   },
   preset: {
     type: String,
-    default: "dialog",
+    default: 'dialog',
   },
 };

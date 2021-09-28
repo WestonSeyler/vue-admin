@@ -220,3 +220,4 @@ export function lighten(color: string, amount: number) {
     amount
   )}${addLight(color.substring(4, 6), amount)}`;
 }
+

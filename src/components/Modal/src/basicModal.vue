@@ -1,31 +1,33 @@
 <template>
-  <n-button @click="showModal2 = true"> 样式2 </n-button>
-  <n-space>
-    <n-modal
-      v-model:show="showModal2"
-      preset="card"
-      :style="bodyStyle"
-      title="添加证书"
-      headStyle="block"
-    >
-      <template #header>
-        <div class="w-full cursor-move" id="basic-modal-bar">标题</div>
-      </template>
-      <template #default>
-        <slot name="default"></slot>
-      </template>
-      <template #action v-if="!$slots.action">
-        <div class="text-center">
-          <n-button class="mr-2">取消</n-button>
-          <n-button type="primary">确定</n-button>
-        </div>
-      </template>
-      <template v-else #action>
-        <slot name="action"></slot>
-      </template>
-    </n-modal>
-  </n-space>
+  <n-modal
+    id="basic-modal"
+    v-bind="getBindValue"
+    :style="`width:${getBindValue.width}`"
+    v-model:show="isModal"
+    @close="onCloseModal"
+  >
+    <template #header>
+      <div class="w-full cursor-move" id="basic-modal-bar">
+        {{ getBindValue.title }}
+      </div>
+    </template>
+    <template #default>
+      <slot name="default"></slot>
+    </template>
+    <template #action v-if="!$slots.action">
+      <n-space>
+        <n-button @click="closeModal">取消</n-button>
+        <n-button type="primary" :loading="subLoading" @click="handleSubmit">{{
+          subBtuText
+        }}</n-button>
+      </n-space>
+    </template>
+    <template v-else #action>
+      <slot name="action"></slot>
+    </template>
+  </n-modal>
 </template>
+
 <script lang="ts" setup>
 import {
   getCurrentInstance,
@@ -37,14 +39,80 @@ import {
   defineEmits,
   defineProps,
 } from "vue";
-import { defineComponent } from "vue";
-import { basicProps } from "./prop";
+import { basicProps } from "./props";
+import startDrag from "@/utils/Drag";
+import { deepMerge } from "@/utils";
+// import { FormProps } from '@/components/Form';
+import { ModalProps, ModalMethods } from "./type";
+
+const attrs = useAttrs();
 const props = defineProps({ ...basicProps });
-const showModal = ref(false);
-const showModal1 = ref(false);
-const showModal2 = ref(false);
-const bodyStyle = {
-  width: "560px",
+const emit = defineEmits(["on-close", "on-ok", "register"]);
+
+const propsRef = ref(<Partial<ModalProps> | null>null);
+
+const isModal = ref(false);
+const subLoading = ref(false);
+
+const getProps = computed((): any => {
+  return { ...props, ...(unref(propsRef) as any) };
+});
+
+async function setProps(modalProps: Partial<ModalProps>): Promise<void> {
+  propsRef.value = deepMerge(unref(propsRef) || ({} as any), modalProps);
+}
+
+const getBindValue = computed(() => {
+  return {
+    ...attrs,
+    ...unref(getProps),
+  };
+});
+
+function setSubLoading(status: boolean) {
+  subLoading.value = status;
+}
+
+function openModal() {
+  isModal.value = true;
+  nextTick(() => {
+    const oBox = document.getElementById("basic-modal");
+    const oBar = document.getElementById("basic-modal-bar");
+    startDrag(oBar, oBox);
+  });
+}
+
+function closeModal() {
+  isModal.value = false;
+  subLoading.value = false;
+  emit("on-close");
+}
+
+function onCloseModal() {
+  isModal.value = false;
+  emit("on-close");
+}
+
+function handleSubmit() {
+  subLoading.value = true;
+  emit("on-ok");
+}
+
+const modalMethods: ModalMethods = {
+  setProps,
+  openModal,
+  closeModal,
+  setSubLoading,
 };
-console.log(props);
+
+const instance = getCurrentInstance();
+if (instance) {
+  emit("register", modalMethods);
+}
 </script>
+
+<style lang="scss">
+.cursor-move {
+  cursor: move;
+}
+</style>
