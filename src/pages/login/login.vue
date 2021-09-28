@@ -90,9 +90,13 @@ const loading = ref(false);
 const autoLogin = ref(true);
 
 const formInline = reactive({
-  username: "admin",
-  password: "123456",
-  isCaptcha: false,
+  // username: "admin",
+  // password: "123456",
+  // isCaptcha: false,
+  username: "",
+  password: "",
+  grant_type: "password",
+  mdid: "fcc8bcc148617e3baa440a57acd3b666",
 });
 
 const rules = {
@@ -118,9 +122,10 @@ const handleSubmit = (e: any) => {
         password,
       };
 
-      const { code, message: msg } = await userStore.login(params);
+      const res = await userStore.login(formInline);
+      debugger;
 
-      if (code == ResultEnum.SUCCESS) {
+      if (res) {
         const toPath = decodeURIComponent(
           (route.query?.redirect || "/") as string
         );
@@ -131,7 +136,10 @@ const handleSubmit = (e: any) => {
           }
         });
       } else {
-        message.info(msg || "登录失败");
+        message.info("登录失败");
+        setTimeout(() => {
+          loading.value = false;
+        }, 3000);
       }
     } else {
       message.error("请填写完整信息，并且进行验证码校验");

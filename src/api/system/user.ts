@@ -1,9 +1,19 @@
 import http from "@/utils/http/axios";
 
+export interface LoginResponseModel<T = any> {
+  access_token: string;
+  duid: string;
+  iuid: string;
+  mdid: string;
+  refresh_token: string;
+  scope: "openid";
+  tenantIds: any[];
+  userName: string;
+}
 export interface BasicResponseModel<T = any> {
-  code: number;
-  message: string;
-  result: T;
+  state: number;
+  msg: string;
+  results: T;
 }
 
 export interface BasicPageParams {
@@ -25,15 +35,21 @@ export function getUserInfo() {
 /**
  * @description: 用户登录
  */
-export function login(params:any) {
-  return http.request<BasicResponseModel>(
+export function login(params: any) {
+  return http.request<LoginResponseModel>(
+    // {
+    //   url: "/login",
+    //   method: "POST",
+    //   params,
+    // },
     {
-      url: "/login",
+      url: "/ms-posr-dc/api/auth/v1/login/token",
       method: "POST",
       params,
     },
     {
       isTransformResponse: false,
+      joinParamsToUrl: true,
     }
   );
 }
@@ -57,7 +73,7 @@ export function changePassword(params, uid) {
 /**
  * @description: 用户登出
  */
-export function logout(params) {
+export function logout(params: any) {
   return http.request({
     url: "/login/logout",
     method: "POST",

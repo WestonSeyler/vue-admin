@@ -49,13 +49,13 @@ export const useUserStore = defineStore({
     async login(userInfo: any) {
       try {
         const response = await login(userInfo);
-        const { result, code } = response;
-        if (code === ResultEnum.SUCCESS) {
+        // const { result, code } = response;
+        if (response) {
           const ex = 7 * 24 * 60 * 60 * 1000;
-          storage.set(ACCESS_TOKEN, result.token, ex);
-          storage.set(CURRENT_USER, result, ex);
-          this.setToken(result.token);
-          this.setUserInfo(result);
+          storage.set(ACCESS_TOKEN, response.access_token, ex);
+          storage.set(CURRENT_USER, response.tenantIds, ex);
+          this.setToken(response.access_token);
+          this.setUserInfo(response);
         }
         return Promise.resolve(response);
       } catch (e) {

@@ -29,11 +29,12 @@ export default ({ command, mode }: ConfigEnv) => {
     VITE_GLOB_PROD_MOCK,
     VITE_PROXY,
   } = viteEnv;
+  console.log(VITE_PROXY);
+
   const prodMock = VITE_GLOB_PROD_MOCK;
   const isBuild = command === "build";
-  // console.log(env);
   return {
-    base: './',
+    base: "./",
     plugins: createVitePlugins(viteEnv, isBuild, prodMock),
     resolve: {
       alias: [

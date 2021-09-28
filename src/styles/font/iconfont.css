@@ -1,0 +1,1064 @@
+@font-face {
+  font-family: 'iconfont';
+  /* Project id 1069810 */
+  src: url('//at.alicdn.com/t/font_1069810_118l6azhxwtm.woff2?t=1630648527670') format('woff2'),
+    url('//at.alicdn.com/t/font_1069810_118l6azhxwtm.woff?t=1630648527670') format('woff'),
+    url('//at.alicdn.com/t/font_1069810_118l6azhxwtm.ttf?t=1630648527670') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.font_family {
+  font-family: "font_family" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-female_list:before {
+  content: "\e653";
+}
+
+.icon-male_list:before {
+  content: "\e652";
+}
+
+.icon-unknown:before {
+  content: "\e656";
+}
+
+.icon-spread:before {
+  content: "\e7cf";
+}
+
+.icon-shijianzhouweixuanzhong:before {
+  content: "\e65f";
+}
+
+.icon-shijianzhouxuanzhong:before {
+  content: "\e660";
+}
+
+.icon-add2:before {
+  content: "\e65e";
+}
+
+.icon-wenzhen:before {
+  content: "\e657";
+}
+
+.icon-status:before {
+  content: "\e655";
+}
+
+.icon-wenjianjia:before {
+  content: "\e600";
+}
+
+.icon-weibiaoti5:before {
+  content: "\e601";
+}
+
+.icon-close:before {
+  content: "\e60c";
+}
+
+.icon-jiaruhuiyi:before {
+  content: "\e60b";
+}
+
+.icon-yaoshifuwu:before {
+  content: "\e609";
+}
+
+.icon-huanzheguanli:before {
+  content: "\e6ba";
+}
+
+.icon-yiyaofuwu:before {
+  content: "\e6b9";
+}
+
+.icon-Remoteimage_huaban:before {
+  content: "\e785";
+}
+
+.icon-zip:before {
+  content: "\e62e";
+}
+
+.icon-web_lefbar_Follow-upCenter:before {
+  content: "\e784";
+}
+
+.icon-web_lefbar_service:before {
+  content: "\e781";
+}
+
+.icon-web_lefbar_Satisfaction:before {
+  content: "\e782";
+}
+
+.icon-web_lefbar_statistics:before {
+  content: "\e783";
+}
+
+.icon-Folloup_management:before {
+  content: "\e77f";
+}
+
+.icon-Followup_system:before {
+  content: "\e780";
+}
+
+.icon-nomore:before {
+  content: "\e77e";
+}
+
+.icon-frequency:before {
+  content: "\e77d";
+}
+
+.icon-Questionbank:before {
+  content: "\e77c";
+}
+
+.icon-Advice:before {
+  content: "\e77b";
+}
+
+.icon-division:before {
+  content: "\e77a";
+}
+
+.icon-Enable:before {
+  content: "\e779";
+}
+
+.icon-user1:before {
+  content: "\e7ae";
+}
+
+.icon-technology:before {
+  content: "\e778";
+}
+
+.icon-Conference_card:before {
+  content: "\e775";
+}
+
+.icon-bed:before {
+  content: "\e774";
+}
+
+.icon-tip:before {
+  content: "\e773";
+}
+
+.icon-time:before {
+  content: "\e7ce";
+}
+
+.icon-news:before {
+  content: "\e7bd";
+}
+
+.icon-news_:before {
+  content: "\e7bf";
+}
+
+.icon-kong:before {
+  content: "\e772";
+}
+
+.icon-Export:before {
+  content: "\e771";
+}
+
+.icon-Avatar:before {
+  content: "\e770";
+}
+
+.icon-Android:before {
+  content: "\e76e";
+}
+
+.icon-iPhone:before {
+  content: "\e76f";
+}
+
+.icon-date:before {
+  content: "\e76d";
+}
+
+.icon-Rating_question:before {
+  content: "\e76c";
+}
+
+.icon-delete_1:before {
+  content: "\e76b";
+}
+
+.icon-Medicalreport:before {
+  content: "\e76a";
+}
+
+.icon-female_white:before {
+  content: "\e768";
+}
+
+.icon-male_white:before {
+  content: "\e769";
+}
+
+.icon-add_img:before {
+  content: "\e767";
+}
+
+.icon-license_1:before {
+  content: "\e766";
+}
+
+.icon-license_:before {
+  content: "\e764";
+}
+
+.icon-paixuxia:before {
+  content: "\e674";
+}
+
+.icon-paixushang:before {
+  content: "\e675";
+}
+
+.icon-camera1:before {
+  content: "\e765";
+}
+
+.icon-web_lefbar_FinancialManagementt:before {
+  content: "\e761";
+}
+
+.icon-web_lefbar_Operationmanagement:before {
+  content: "\e762";
+}
+
+.icon-web_lefbar_management:before {
+  content: "\e763";
+}
+
+.icon-chongqing:before {
+  content: "\e760";
+}
+
+.icon-chongqing-copy:before {
+  content: "\e81f";
+}
+
+.icon-shulanyiyuan1-copy:before {
+  content: "\e820";
+}
+
+.icon-shulanyiyuan1:before {
+  content: "\e802";
+}
+
+.icon-open:before {
+  content: "\e7c2";
+}
+
+.icon-takeup:before {
+  content: "\e7ca";
+}
+
+.icon-changecompany:before {
+  content: "\e7b2";
+}
+
+.icon-password_:before {
+  content: "\e7c4";
+}
+
+.icon-outing1:before {
+  content: "\e7c8";
+}
+
+.icon-camera:before {
+  content: "\e618";
+}
+
+.icon-tongyongbiaotiicon:before {
+  content: "\e616";
+}
+
+.icon-Shape:before {
+  content: "\e689";
+}
+
+.icon-sanjiaoxingjinggao:before {
+  content: "\e647";
+}
+
+.icon-xinkehu:before {
+  content: "\e614";
+}
+
+.icon-yuanchenghuizhen:before {
+  content: "\e60a";
+}
+
+.icon-shipinwenzhen:before {
+  content: "\e68b";
+}
+
+.icon-tuwenwenzhen:before {
+  content: "\e68c";
+}
+
+.icon-tongyongleixing:before {
+  content: "\e68d";
+}
+
+.icon-tuichu1:before {
+  content: "\e691";
+}
+
+.icon-qiehuan1:before {
+  content: "\e6bb";
+}
+
+.icon-wowjoy_huaban:before {
+  content: "\e7e6";
+}
+
+.icon-boaoyiyuan:before {
+  content: "\e75f";
+}
+
+.icon-huizhen:before {
+  content: "\e61d";
+}
+
+.icon-menzhen:before {
+  content: "\e61e";
+}
+
+.icon-zhuyuan:before {
+  content: "\e61f";
+}
+
+.icon-web_lefbar_Hospitalmanagement:before {
+  content: "\e75e";
+}
+
+.icon-add1:before {
+  content: "\e821";
+}
+
+.icon-add1_green:before {
+  content: "\e776";
+}
+
+.icon-delete1_red:before {
+  content: "\e777";
+}
+
+.icon-delete1:before {
+  content: "\e822";
+}
+
+.icon-deletex2:before {
+  content: "\e7e8";
+}
+
+.icon-title:before {
+  content: "\e75d";
+}
+
+.icon-waring_more:before {
+  content: "\e75c";
+}
+
+.icon-web_refurbish:before {
+  content: "\e75b";
+}
+
+.icon-license-:before {
+  content: "\e75a";
+}
+
+.icon-sfz_renxiang:before {
+  content: "\e819";
+}
+
+.icon-sfz_guohui:before {
+  content: "\e81a";
+}
+
+.icon-sfz_shouchi:before {
+  content: "\e81b";
+}
+
+.icon-shouquanshu:before {
+  content: "\e81e";
+}
+
+.icon-web_eftbar_Missionary-:before {
+  content: "\e759";
+}
+
+.icon-Photo:before {
+  content: "\e758";
+}
+
+.icon-collection:before {
+  content: "\e7f7";
+}
+
+.icon-web_label_Hospitalization--:before {
+  content: "\e754";
+}
+
+.icon-web_label_Outpatient--:before {
+  content: "\e755";
+}
+
+.icon-web_label_Inthehospital-:before {
+  content: "\e756";
+}
+
+.icon-web_label_Specialdisease--:before {
+  content: "\e757";
+}
+
+.icon-app_choose_Selected-:before {
+  content: "\e745";
+}
+
+.icon-app_choose_default-:before {
+  content: "\e746";
+}
+
+.icon-Jump_question_huaban:before {
+  content: "\e753";
+}
+
+.icon-grey_bianji:before {
+  content: "\e654";
+}
+
+.icon-grey_shanchu:before {
+  content: "\e648";
+}
+
+.icon-grey_fuzhi:before {
+  content: "\e649";
+}
+
+.icon-Rotate-:before {
+  content: "\e752";
+}
+
+.icon-VerificationCode_huaban:before {
+  content: "\e751";
+}
+
+.icon-phone1:before {
+  content: "\e7c7";
+}
+
+.icon-go1:before {
+  content: "\e7fa";
+}
+
+.icon-drop_down:before {
+  content: "\e7e5";
+}
+
+.icon-select1:before {
+  content: "\e7eb";
+}
+
+.icon-Hospital:before {
+  content: "\e750";
+}
+
+.icon-web_add_opt:before {
+  content: "\e74f";
+}
+
+.icon-leftbar_Businessmodule:before {
+  content: "\e74e";
+}
+
+.icon-leftbar_UserManagement:before {
+  content: "\e74d";
+}
+
+.icon-status_Wait_huaban:before {
+  content: "\e74b";
+}
+
+.icon-status_processing_huaban:before {
+  content: "\e74c";
+}
+
+.icon-search:before {
+  content: "\e7cc";
+}
+
+.icon-done_line:before {
+  content: "\e7db";
+}
+
+.icon-information1:before {
+  content: "\e7dc";
+}
+
+.icon-information_line:before {
+  content: "\e7dd";
+}
+
+.icon-question_line:before {
+  content: "\e7de";
+}
+
+.icon-question1:before {
+  content: "\e7df";
+}
+
+.icon-waring:before {
+  content: "\e7e0";
+}
+
+.icon-wrong_line:before {
+  content: "\e7e1";
+}
+
+.icon-wrong1:before {
+  content: "\e7e2";
+}
+
+.icon-waring_line:before {
+  content: "\e7e3";
+}
+
+.icon-done1:before {
+  content: "\e7e4";
+}
+
+.icon-photo_delete:before {
+  content: "\e7e7";
+}
+
+.icon-forbidden1:before {
+  content: "\e7f4";
+}
+
+.icon-delete2:before {
+  content: "\e7f5";
+}
+
+.icon-edit1:before {
+  content: "\e7f6";
+}
+
+.icon-foldersopening:before {
+  content: "\e7fe";
+}
+
+.icon-folder:before {
+  content: "\e7ff";
+}
+
+.icon-required:before {
+  content: "\e800";
+}
+
+.icon-Eliminate-:before {
+  content: "\e74a";
+}
+
+.icon-Preservation-:before {
+  content: "\e710";
+}
+
+.icon-Sign-:before {
+  content: "\e70f";
+}
+
+.icon-none1:before {
+  content: "\e7fd";
+}
+
+.icon-loading_wowjoy:before {
+  content: "\e80d";
+}
+
+.icon-search_none:before {
+  content: "\e796";
+}
+
+.icon-Bulletbox_remind_end1:before {
+  content: "\e748";
+}
+
+.icon-Bulletbox_remind_dropout1:before {
+  content: "\e749";
+}
+
+.icon-app_edit-:before {
+  content: "\e747";
+}
+
+.icon-xiaochengxu_kaiguan_shi:before {
+  content: "\e743";
+}
+
+.icon-xiaochengxu_kaiguan_fou:before {
+  content: "\e744";
+}
+
+.icon-yunyingguanlihoutailogo:before {
+  content: "\e740";
+}
+
+.icon-yiyuanguanlihoutai:before {
+  content: "\e741";
+}
+
+.icon-yishenggongzuozhanlogo:before {
+  content: "\e742";
+}
+
+.icon-xiala_shang:before {
+  content: "\e737";
+}
+
+.icon-xiala_xiasvg:before {
+  content: "\e738";
+}
+
+.icon-shanchu:before {
+  content: "\e739";
+}
+
+.icon-xiaochengxu_suifang:before {
+  content: "\e73a";
+}
+
+.icon-xiaochengxu_yisheng:before {
+  content: "\e73b";
+}
+
+.icon-xiaochengxu_wode:before {
+  content: "\e73c";
+}
+
+.icon-xiaochengxu_shouye:before {
+  content: "\e73d";
+}
+
+.icon-xiaochengxu_gouxuan:before {
+  content: "\e73e";
+}
+
+.icon-xiaochengxu_zaixianwenzhen:before {
+  content: "\e73f";
+}
+
+.icon-View_patient_details:before {
+  content: "\e730";
+}
+
+.icon-Switching_thecamera_head:before {
+  content: "\e731";
+}
+
+.icon-xiaochengxu_suifangtongzhi:before {
+  content: "\e732";
+}
+
+.icon-xiaochengxu_xiangqingjiantou:before {
+  content: "\e733";
+}
+
+.icon-xiaochengxu_sousuo:before {
+  content: "\e734";
+}
+
+.icon-hang_up:before {
+  content: "\e735";
+}
+
+.icon-xiaochengxu_guanbisvg:before {
+  content: "\e736";
+}
+
+.icon-Overview:before {
+  content: "\e727";
+}
+
+.icon-inspectioopinion:before {
+  content: "\e728";
+}
+
+.icon-attention:before {
+  content: "\e729";
+}
+
+.icon-description:before {
+  content: "\e72a";
+}
+
+.icon-Current_history:before {
+  content: "\e72b";
+}
+
+.icon-advisory:before {
+  content: "\e72c";
+}
+
+.icon-diagnosis:before {
+  content: "\e72d";
+}
+
+.icon-Medical_examination:before {
+  content: "\e72e";
+}
+
+.icon-inspection_report:before {
+  content: "\e72f";
+}
+
+.icon-Previouspage_sel1:before {
+  content: "\e721";
+}
+
+.icon-Previouspage_def1:before {
+  content: "\e722";
+}
+
+.icon-Nextpage_sel1:before {
+  content: "\e723";
+}
+
+.icon-Nextpage_def1:before {
+  content: "\e724";
+}
+
+.icon-Below1:before {
+  content: "\e725";
+}
+
+.icon-Above1:before {
+  content: "\e726";
+}
+
+.icon-Disease_data:before {
+  content: "\e720";
+}
+
+.icon-Enterthe_videoclinic:before {
+  content: "\e71b";
+}
+
+.icon-Medical_record:before {
+  content: "\e71c";
+}
+
+.icon-Follow-up_record:before {
+  content: "\e71d";
+}
+
+.icon-Clinical_indicators:before {
+  content: "\e71e";
+}
+
+.icon-Basic_information:before {
+  content: "\e71f";
+}
+
+.icon-name:before {
+  content: "\e71a";
+}
+
+.icon-status_end:before {
+  content: "\e718";
+}
+
+.icon-cancel:before {
+  content: "\e719";
+}
+
+.icon-Take_photo:before {
+  content: "\e717";
+}
+
+.icon-status_wait:before {
+  content: "\e713";
+}
+
+.icon-add:before {
+  content: "\e714";
+}
+
+.icon-photo:before {
+  content: "\e715";
+}
+
+.icon-age:before {
+  content: "\e716";
+}
+
+.icon-Visiting:before {
+  content: "\e712";
+}
+
+.icon-Consultation_summary:before {
+  content: "\e70b";
+}
+
+.icon-Withdrawal:before {
+  content: "\e70c";
+}
+
+.icon-label:before {
+  content: "\e70d";
+}
+
+.icon-add_Diseaselabel:before {
+  content: "\e70e";
+}
+
+.icon-status_processing:before {
+  content: "\e711";
+}
+
+.icon-Radio_def:before {
+  content: "\e703";
+}
+
+.icon-add_image:before {
+  content: "\e704";
+}
+
+.icon-user:before {
+  content: "\e705";
+}
+
+.icon-Radio_sel:before {
+  content: "\e706";
+}
+
+.icon-Check_sel:before {
+  content: "\e707";
+}
+
+.icon-password:before {
+  content: "\e708";
+}
+
+.icon-Task_reminder:before {
+  content: "\e709";
+}
+
+.icon-Check_def:before {
+  content: "\e70a";
+}
+
+.icon-system_hint:before {
+  content: "\e6fc";
+}
+
+.icon-Followup_plan:before {
+  content: "\e6fd";
+}
+
+.icon-web_Meeting_announcement:before {
+  content: "\e6fe";
+}
+
+.icon-web_Start:before {
+  content: "\e6ff";
+}
+
+.icon-web_Endofthemeeting:before {
+  content: "\e700";
+}
+
+.icon-web_Application:before {
+  content: "\e701";
+}
+
+.icon-web_add_meeting:before {
+  content: "\e702";
+}
+
+.icon-web_status_ing:before {
+  content: "\e6f8";
+}
+
+.icon-web_video_shutdown:before {
+  content: "\e6f9";
+}
+
+.icon-web_leftbar_Remoterounds:before {
+  content: "\e6fa";
+}
+
+.icon-web_video_open:before {
+  content: "\e6fb";
+}
+
+.icon-web_voice_shutdown:before {
+  content: "\e6f1";
+}
+
+.icon-web_voice_Open:before {
+  content: "\e6f2";
+}
+
+.icon-web_volume_Voiced:before {
+  content: "\e6f3";
+}
+
+.icon-app_Graphic_consultation_Onlineconsultation:before {
+  content: "\e6f4";
+}
+
+.icon-web_Setting:before {
+  content: "\e6f5";
+}
+
+.icon-web_volume_Mute:before {
+  content: "\e6f6";
+}
+
+.icon-web_participants:before {
+  content: "\e6f7";
+}
+
+.icon-app_nav_patient:before {
+  content: "\e6ef";
+}
+
+.icon-Applets_Patientmanagement:before {
+  content: "\e6f0";
+}
+
+.icon-app_Graphic_consultation:before {
+  content: "\e6ec";
+}
+
+.icon-app_nav_Clinic:before {
+  content: "\e6ed";
+}
+
+.icon-web_add:before {
+  content: "\e6ee";
+}
+
+.icon-app_new:before {
+  content: "\e6e7";
+}
+
+.icon-app__switch_shutdown:before {
+  content: "\e6e8";
+}
+
+.icon-app_switch_open:before {
+  content: "\e6ea";
+}
+
+.icon-Applets_Graphic_consultation_record:before {
+  content: "\e6eb";
+}
+
+.icon-web_label_Hospitalization-:before {
+  content: "\e6e0";
+}
+
+.icon-web_leftbar_Two_way_referral:before {
+  content: "\e6e1";
+}
+
+.icon-web_label_Outpatient-:before {
+  content: "\e6e2";
+}
+
+.icon-web_label_Specialdisease-:before {
+  content: "\e6e5";
+}
+
+.icon-web_enter-:before {
+  content: "\e6e6";
+}
+
+.icon-Experience_report-:before {
+  content: "\e6e4";
+}
+
+.icon-WeChatpublicnumber_thanks-:before {
+  content: "\e6de";
+}
+
+.icon-web_dialnumber-:before {
+  content: "\e6df";
+}
+
+.icon-clear_test:before {
+  content: "\e6e3";
+}
+
+.icon-Female-:before {
+  content: "\e6dc";
+}
+
+.icon-male--:before {
+  content: "\e6dd";
+}
+
+.icon-app_Avatar_female-:before {
+  content: "\e65a";
+}
+
+.icon-Applets_Avatar_Female:before {
+  content: "\e65b";
+}
+
+.icon-Applets_Avatar_male:before {
+  content: "\e65c";
+}
+
+.icon-app_Avatar_male-:before {
+  content: "\e65d";
+}
+
+.icon-chongqing_threegorges_centralhospita_logo-:before {
+  content: "\e6e9";
+}
+
+.icon-male:before {
+  content: "\e664";
+}
+
+.icon-female-:before {
+  content: "\e665";
+}
+
+.icon-shulanyiyuan:before {
+  content: "\e66c";
+}
+
+.icon-shulanyiyuan-:before {
+  content: "\e66d";
+}

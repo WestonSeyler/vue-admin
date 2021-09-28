@@ -15,6 +15,7 @@ const httpsRE = /^https:\/\//;
  * Generate proxy
  * @param list
  */
+//api https//xxxx.com
 export function createProxy(list: ProxyList = []) {
   const ret: ProxyTargetList = {};
   for (const [prefix, target] of list) {
@@ -24,7 +25,6 @@ export function createProxy(list: ProxyList = []) {
     ret[prefix] = {
       target: target,
       changeOrigin: true,
-      ws: true,
       rewrite: (path) => path.replace(new RegExp(`^${prefix}`), ''),
       // https is require secure=false
       ...(isHttps ? { secure: false } : {}),
