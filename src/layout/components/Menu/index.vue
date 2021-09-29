@@ -1,6 +1,6 @@
 <template>
   <NMenu
-    :options="menus"
+    :options="menuList"
     :mode="mode"
     :collapsed="collapsed"
     :collapsed-width="64"
@@ -38,17 +38,20 @@ export default defineComponent({
       // 侧边栏菜单是否收起
       type: Boolean,
     },
+    menuList: {
+      type: Array,
+    },
   },
   setup(props, { emit }) {
     const currentRoute = useRoute();
     const router = useRouter();
     const asyncRouteStore = useAsyncRouteStore();
     const menus = ref<any[]>([]);
+    // const selectedKeys = ref<string>(currentRoute.name as string);
     const selectedKeys = ref<string>(currentRoute.name as string);
     const matched = currentRoute.matched;
     const getOpenKeys =
       matched && matched.length ? matched.map((item) => item.name) : [];
-
     const state = reactive({
       openKeys: getOpenKeys,
     });
@@ -64,20 +67,21 @@ export default defineComponent({
       }
     );
     // 点击菜单
-    function clickMenuItem(key: string) {
+    function clickMenuItem(key: string, item: any) {
       if (/http(s)?:/.test(key)) {
         window.open(key);
       } else {
-        router.push({ name: key });
+        router.push(item.path);
       }
     }
     function updateMenu() {
       menus.value = generatorMenu(asyncRouteStore.getMenus);
+      console.log(menus.value);
     }
     watch(
       () => currentRoute.fullPath,
       () => {
-        updateMenu();
+        // updateMenu();
         const matched = currentRoute.matched;
         state.openKeys = matched.map((item) => item.name);
         const activeMenu: string =
@@ -99,6 +103,7 @@ export default defineComponent({
           ? [latestOpenKey]
           : []
         : openKeys;
+      // console.log(state.openKeys,'state.openKeys');
     }
 
     //查找是否存在子路由

@@ -23,9 +23,8 @@ function goHome() {
   width: 100%;
   border-radius: 4px;
   padding: 50px 0;
-  height: 100vh;
+  min-height: calc(90vh - (80px));
   text-align: center;
-
   .text-center {
     h1 {
       color: #666;

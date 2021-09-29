@@ -14,7 +14,7 @@ const menusList = [
       {
         path: 'console',
         name: 'dashboard_console',
-        component: '/dashboard/console/console',
+        // component: '/dashboard/console/console',
         meta: {
           title: '主控台',
         },

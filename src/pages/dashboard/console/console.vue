@@ -3,6 +3,7 @@
   <basicModal @register="modalRegister">
     <div>1111</div>
   </basicModal>
+  <div style="height:1000px"></div>
   <n-button @click="handleClick">click</n-button>
 </template>
 <script lang="ts">

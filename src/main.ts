@@ -4,6 +4,7 @@ import "./styles/tailwind.css";
 import { setupStore } from "@/store";
 import { setupRouter } from "./router";
 import { setupNaive } from "@/plugins";
+import './styles/font/iconfont.css'
 import wowjoy from "wowjoy-vui";
 
 async function bootstrap() {

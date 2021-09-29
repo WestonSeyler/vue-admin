@@ -9,29 +9,21 @@
         @click="() => $emit('update:collapsed', !collapsed)"
       >
         <!-- 菜单展开 -->
-        <n-icon size="18" v-if="collapsed">
+        <n-icon size="18" v-if="collapsed" class="text-white">
           <MenuUnfoldOutlined />
         </n-icon>
-        <n-icon size="18" v-else>
+        <n-icon size="18" v-else class="text-white">
           <MenuFoldOutlined />
         </n-icon>
       </div>
+      <div class="text-white text-lg">华卓科技 | CRM</div>
+
       <!-- 刷新 -->
       <!-- <div class="mr-1 layout-header-trigger layout-header-trigger-min">
         <n-icon size="18">
           <ReloadOutlined />
         </n-icon>
       </div> -->
-      <div class="breadcrumb">
-        <n-breadcrumb>
-          <template v-for="routeItem in breadcrumbList" :key="routeItem.name">
-            <n-breadcrumb-item>
-              {{ routeItem.meta.title }}
-            </n-breadcrumb-item>
-          </template>
-        </n-breadcrumb>
-      </div>
-      <!-- 面包屑 -->
     </div>
 
     <div class="layout-header-right">
@@ -125,28 +117,6 @@ export default defineComponent({
     const state = reactive({
       username: username || "",
     });
-    const generator: any = (routerMap: any) => {
-      return routerMap.map((item: any) => {
-        const currentMenu = {
-          ...item,
-          label: item.meta.title,
-          key: item.name,
-          disabled: item.path === "/",
-        };
-        // 是否有子菜单，并递归处理
-        if (item.children && item.children.length > 0) {
-          // Recursion
-          currentMenu.children = generator(item.children, currentMenu);
-        }
-        return currentMenu;
-      });
-    };
-    //面包屑
-    const breadcrumbList = computed(() => {
-      return generator(route.matched);
-    });
-    console.log(breadcrumbList.value);
-
     //个人设置
     const avatarOptions = [
       {
@@ -200,7 +170,6 @@ export default defineComponent({
       avatarOptions,
       avatarSelect,
       username,
-      breadcrumbList,
     };
   },
 });
@@ -213,6 +182,7 @@ export default defineComponent({
   align-items: center;
   padding: 0;
   height: $header-height;
+  background: #198eeb;
   box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
   transition: all 0.2s ease-in-out;
   // width: 100%;

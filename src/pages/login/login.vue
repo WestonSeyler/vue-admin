@@ -123,8 +123,6 @@ const handleSubmit = (e: any) => {
       };
 
       const res = await userStore.login(formInline);
-      debugger;
-
       if (res) {
         const toPath = decodeURIComponent(
           (route.query?.redirect || "/") as string

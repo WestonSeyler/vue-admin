@@ -130,9 +130,9 @@ const transform: AxiosTransform = {
     }
 
     // 这里逻辑可以根据项目进行修改
-    if (!hasSuccess) {
-      return reject(new Error(message));
-    }
+    // if (!hasSuccess) {
+    //   return reject(new Error(message));
+    // }
 
     return data;
   },

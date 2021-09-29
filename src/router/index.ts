@@ -31,7 +31,6 @@ export const LoginRoute: RouteRecordRaw = {
     title: "登录",
   },
 };
-
 //需要验证权限
 export const asyncRoutes = [...routeModuleList];
 
