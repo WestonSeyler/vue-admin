@@ -17,7 +17,7 @@ import { renderIcon } from "@/utils/index";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/form",
-    name: "Form",
+    name: "客户管理",
     redirect: "/form/basic-form",
     component: Layout,
     meta: {
@@ -27,29 +27,29 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
-        path: "basic-form",
-        name: "form-basic-form",
+        path: "/user",
+        name: "客户列表",
         meta: {
           title: "基础表单",
         },
         component: () => import("@/pages/form/basicForm/index.vue"),
       },
       {
-        path: "step-form",
-        name: "form-step-form",
+        path: "/saleChance",
+        name: "销售机会",
         meta: {
           title: "分步表单",
         },
         component: () => import("@/pages/form/stepForm/index.vue"),
       },
-      {
-        path: "detail",
-        name: "form-detail",
-        meta: {
-          title: "表单详情",
-        },
-        component: () => import("@/pages/form/detailForm/index.vue"),
-      },
+      // {
+      //   path: "detail",
+      //   name: "form-detail",
+      //   meta: {
+      //     title: "表单详情",
+      //   },
+      //   component: () => import("@/pages/form/detailForm/index.vue"),
+      // },
     ],
   },
 ];

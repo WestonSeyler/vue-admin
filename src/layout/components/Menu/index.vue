@@ -6,6 +6,7 @@
     :collapsed-width="64"
     :collapsed-icon-size="20"
     :indent="24"
+    accordion
     :expanded-keys="openKeys"
     :value="getSelectedKeys"
     @update:value="clickMenuItem"
@@ -50,24 +51,33 @@ export default defineComponent({
     // const selectedKeys = ref<string>(currentRoute.name as string);
     const selectedKeys = ref<string>(currentRoute.name as string);
     const matched = currentRoute.matched;
+    // console.log(matched);
+
+    // const getOpenKeys = ["推送管理", "群发短信/通知"];
+
     const getOpenKeys =
       matched && matched.length ? matched.map((item) => item.name) : [];
+
     const state = reactive({
       openKeys: getOpenKeys,
     });
     const getSelectedKeys = computed(() => {
       return unref(selectedKeys.value);
+      // return ['账号管理','团队成员']
     });
     // 监听菜单收缩状态
-    watch(
-      () => props.collapsed,
-      (newVal) => {
-        state.openKeys = newVal ? [] : getOpenKeys;
-        selectedKeys.value = currentRoute.name as string;
-      }
-    );
+    // watch(
+    //   () => props.collapsed,
+    //   (newVal) => {
+    //     state.openKeys = newVal ? [] : getOpenKeys;
+    //     selectedKeys.value = currentRoute.name as string;
+    //   }
+    // );
     // 点击菜单
     function clickMenuItem(key: string, item: any) {
+      // message.info('[onUpdate:value]: ' + JSON.stringify(key))
+      // console.log(item);
+
       if (/http(s)?:/.test(key)) {
         window.open(key);
       } else {
@@ -103,7 +113,7 @@ export default defineComponent({
           ? [latestOpenKey]
           : []
         : openKeys;
-      // console.log(state.openKeys,'state.openKeys');
+
     }
 
     //查找是否存在子路由

@@ -2,7 +2,7 @@ import { renderIcon } from "@/utils";
 import { RouteRecordRaw } from "vue-router";
 import { DashboardOutlined } from "@vicons/antd";
 
-const routeName = "dashboard";
+const routeName = "群发短信/通知";
 
 /**
  * @param name 路由名称, 必须设置,且不能重名
@@ -28,7 +28,7 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: "console",
-        name: `${routeName}_console`,
+        name: `${routeName}`,
         meta: {
           title: "主控台",
           permissions: ["dashboard_console"],
