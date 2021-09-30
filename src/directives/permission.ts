@@ -9,6 +9,7 @@ export const permission: ObjectDirective = {
     if (!hasPermission(action)) {
       if (effect == 'disabled') {
         el.disabled = true;
+        //@ts-ignore
         el.style['disabled'] = 'disabled';
         el.classList.add('n-button--disabled');
       } else {

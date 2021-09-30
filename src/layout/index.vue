@@ -24,7 +24,7 @@
       />
     </n-layout-sider>
     <n-layout>
-      <n-layout-header bordered position="absolute">
+      <n-layout-header bordered position="absolute" v-if="CrumbsShow">
         <div class="breadcrumb">
           <n-breadcrumb>
             <template v-for="routeItem in breadcrumbList" :key="routeItem.name">
@@ -35,15 +35,19 @@
           </n-breadcrumb>
         </div>
       </n-layout-header>
-      <div class="mx-4 my-4" >
-        <n-card title="" style="position:absoute;top:30px;bottom:30px">
+
+      <div class="mx-4 my-4">
+        <n-card
+          title=""
+          :style="
+            CrumbsShow
+              ? `position: absoute; top: 30px; bottom: 30px;minHeight:${activeHeight}px`
+              : ''
+          "
+        >
           <router-view></router-view>
         </n-card>
       </div>
-
-      <!-- <n-layout-content class="layout-content">
-        <n-card title="" class="mx-4 my-4"> <router-view></router-view> </n-card>
-      </n-layout-content> -->
     </n-layout>
   </n-layout>
 </template>
@@ -57,12 +61,13 @@ import { PageHeader } from "./components/Header";
 import { AsideMenu } from "./components/Menu";
 import { useRoute, useRouter } from "vue-router";
 import { getMenuList } from "@/api/system/menu";
-const { getMenuSetting } = useProjectSetting();
+const { getMenuSetting, getCrumbsSetting } = useProjectSetting();
 const settingStore = useProjectSettingStore();
 const router = useRouter();
 const route = useRoute();
 const collapsed = ref<boolean>(false);
 const menuList = ref([]);
+const activeHeight = ref("");
 const leftMenuWidth = computed(() => {
   const { minMenuWidth, menuWidth } = unref(getMenuSetting) as any;
   return collapsed.value ? minMenuWidth : menuWidth;
@@ -73,6 +78,12 @@ const watchWidth = () => {
     collapsed.value = true;
   } else collapsed.value = false;
 };
+const watchHeight = () => {
+  // console.log(document.documentElement.clientHeight)
+  activeHeight.value = document.documentElement.clientHeight - 130;
+  console.log(activeHeight.value);
+};
+watchHeight();
 const generator: any = (routerMap: any) => {
   return routerMap.map((item: any) => {
     const currentMenu = {
@@ -93,6 +104,7 @@ const generator: any = (routerMap: any) => {
 const breadcrumbList = computed(() => {
   return generator(route.matched);
 });
+const CrumbsShow = computed(() => getCrumbsSetting.value.show);
 
 const getMenuLocation = computed(() => {
   return "left";
@@ -122,6 +134,7 @@ function formatMenu(root: any[]) {
 }
 onMounted(() => {
   window.addEventListener("resize", watchWidth);
+  window.addEventListener("resize", watchHeight);
   getMenuList<{ children: any[] }>({
     tenantId: "89503794970d881845eb7f8382bc8390",
     userId: "4a526f9abddf1c158eafc12cb5f0f1c4",
