@@ -3,16 +3,19 @@
   <basicModal @register="modalRegister">
     <div>1111</div>
   </basicModal>
-  <div style="height:1000px"></div>
   <n-button @click="handleClick">click</n-button>
+  <BasicTable></BasicTable>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import { basicModal, useModal } from "@/components/Modal";
+import { BasicTable } from "@/components/Table";
 export default defineComponent({
   components: {
     basicModal,
+    BasicTable,
   },
+  
   setup() {
     const [modalRegister, { openModal, closeModal, setSubLoading, setProps }] =
       useModal({
@@ -20,7 +23,7 @@ export default defineComponent({
         width: 500,
       });
     const handleClick = () => {
-      setProps({width:'600px',bodyWidth:'500px'})
+      setProps({ width: "600px", bodyWidth: "500px" });
       openModal();
     };
 

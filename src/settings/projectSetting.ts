@@ -37,7 +37,7 @@ const setting = {
   //面包屑
   crumbsSetting: {
     //是否显示
-    show: true,
+    show: false,
     //显示图标
     showIcon: false,
   },

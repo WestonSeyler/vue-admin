@@ -42,7 +42,7 @@
           :style="
             CrumbsShow
               ? `position: absoute; top: 30px; bottom: 30px;minHeight:${activeHeight}px`
-              : ''
+              : `minHeight:${activeHeight}px`
           "
         >
           <router-view></router-view>
@@ -67,11 +67,12 @@ const router = useRouter();
 const route = useRoute();
 const collapsed = ref<boolean>(false);
 const menuList = ref([]);
-const activeHeight = ref("");
+const activeHeight = ref<number>(0);
 const leftMenuWidth = computed(() => {
   const { minMenuWidth, menuWidth } = unref(getMenuSetting) as any;
   return collapsed.value ? minMenuWidth : menuWidth;
 });
+const CrumbsShow = computed(() => getCrumbsSetting.value.show);
 const watchWidth = () => {
   const Width = document.body.clientWidth;
   if (Width <= 950) {
@@ -80,8 +81,9 @@ const watchWidth = () => {
 };
 const watchHeight = () => {
   // console.log(document.documentElement.clientHeight)
-  activeHeight.value = document.documentElement.clientHeight - 130;
-  console.log(activeHeight.value);
+  CrumbsShow.value
+    ? (activeHeight.value = document.documentElement.clientHeight - 130)
+    : (activeHeight.value = document.documentElement.clientHeight - 100);
 };
 watchHeight();
 const generator: any = (routerMap: any) => {
@@ -104,7 +106,6 @@ const generator: any = (routerMap: any) => {
 const breadcrumbList = computed(() => {
   return generator(route.matched);
 });
-const CrumbsShow = computed(() => getCrumbsSetting.value.show);
 
 const getMenuLocation = computed(() => {
   return "left";
