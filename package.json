@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "npm run lint:code && npm run lint:type"
   },
   "dependencies": {
     "@micro-zoe/micro-app": "^0.3.3",
