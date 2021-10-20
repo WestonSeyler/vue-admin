@@ -34,7 +34,9 @@ export default ({ command, mode }: ConfigEnv) => {
   const prodMock = VITE_GLOB_PROD_MOCK;
   const isBuild = command === "build";
   return {
-    base: "./",
+    base: `${
+      process.env.NODE_ENV === "production" ? "https://zeroing.jd.com" : "./"
+    }`,
     plugins: createVitePlugins(viteEnv, isBuild, prodMock),
     resolve: {
       alias: [

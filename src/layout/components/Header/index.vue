@@ -25,7 +25,7 @@
         </n-icon>
       </div> -->
     </div>
-
+    <slot @click="slotClick"></slot>
     <div class="layout-header-right">
       <!-- <div
         class="layout-header-trigger layout-header-trigger-min"
@@ -104,8 +104,11 @@ export default defineComponent({
     collapsed: {
       type: Boolean,
     },
+    to: {
+      type: String,
+    },
   },
-  setup() {
+  setup(props) {
     const userStore = useUserStore();
     const message = useMessage();
     const dialog = useDialog();
@@ -117,6 +120,7 @@ export default defineComponent({
     const state = reactive({
       username: username || "",
     });
+
     //个人设置
     const avatarOptions = [
       {

@@ -83,7 +83,7 @@ export function createRouterGuards(router: Router) {
     next(nextData);
     Loading && Loading.finish();
   });
-  router.onError((error) => {
-    console.log(error, "路由错误");
-  });
+  // router.onError((error) => {
+  //   console.log(error, "路由错误");
+  // });
 }

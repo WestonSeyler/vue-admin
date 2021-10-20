@@ -6,7 +6,6 @@ import { setupRouter } from "./router";
 import { setupNaive, setupDirectives } from "@/plugins";
 import "./styles/font/iconfont.css";
 import wowjoy from "wowjoy-vui";
-
 async function bootstrap() {
   const app = createApp(App);
   setupStore(app);
@@ -17,3 +16,4 @@ async function bootstrap() {
   app.mount("#app");
 }
 bootstrap();
+

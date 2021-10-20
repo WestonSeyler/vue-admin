@@ -1,10 +1,9 @@
 <template>
   <!-- <div>console</div> -->
   <basicModal @register="modalRegister">
-    <div>1111</div>
   </basicModal>
   <n-button @click="handleClick">click</n-button>
-  <BasicTable></BasicTable>
+  <!-- <BasicTable></BasicTable> -->
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -13,7 +12,7 @@ import { BasicTable } from "@/components/Table";
 export default defineComponent({
   components: {
     basicModal,
-    BasicTable,
+    // BasicTable,
   },
   
   setup() {

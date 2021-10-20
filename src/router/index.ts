@@ -1,5 +1,5 @@
 import { App } from "vue";
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
 import { RedirectRoute } from "@/router/base";
 import { createRouterGuards } from "./router-guards";
 import { PageEnum } from "@/enums/pageEnum";
@@ -39,7 +39,7 @@ export const asyncRoutes = [...routeModuleList];
 export const constantRouter: any[] = [LoginRoute, RootRoute, RedirectRoute];
 
 const router = createRouter({
-  history: createWebHashHistory("/vue-admin/"),
+  history: createWebHistory(""),
   routes: constantRouter,
   scrollBehavior: () => ({ left: 0, top: 0 }),
 });

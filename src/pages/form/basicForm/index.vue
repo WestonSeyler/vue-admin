@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="n-layout-page-header x">
-      <n-card :bordered="false" title="基础表单" style="text-align:center" >
-        表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。表单域标签也可支持响应式。
+      <n-card :bordered="false" title="基础表单" style="text-align: center">
+        表单页用于向用户收集或验证信息，基础表单常见于数据项较少的表单场景。表单域标签也可支持响应式1。
       </n-card>
     </div>
     <n-card :bordered="false" class="mt-4 proCard">
-      <n-grid cols="1 s:1 m:3 l:3 xl:3 2xl:3" responsive="screen">
+      <!-- <n-grid cols="1 s:1 m:3 l:3 xl:3 2xl:3" responsive="screen">
         <n-grid-item offset="0 s:0 m:1 l:1 xl:1 2xl:1">
           <n-form
             :label-width="80"
@@ -61,19 +61,6 @@
                 placeholder="请输入预约备注"
               />
             </n-form-item>
-            <!-- <n-form-item label="图片" path="img">
-              <BasicUpload
-                :action="`${uploadUrl}/v1.0/files`"
-                :headers="uploadHeaders"
-                :data="{ type: 0 }"
-                name="files"
-                :width="100"
-                :height="100"
-                @uploadChange="uploadChange"
-                v-model:value="uploadList"
-                helpText="单个文件不超过20MB，最多只能上传10个文件"
-              />
-            </n-form-item> -->
             <div style="margin-left: 80px">
               <n-space>
                 <n-button type="primary" @click="formSubmit">提交预约</n-button>
@@ -82,8 +69,10 @@
             </div>
           </n-form>
         </n-grid-item>
-      </n-grid>
+      </n-grid> -->
+    
     </n-card>
+    
   </div>
 </template>
 
@@ -184,7 +173,7 @@ function formSubmit() {
     if (!errors) {
       message.success("验证成功");
     } else {
-    //   message.error("验证失败，请填写完整信息");
+      //   message.error("验证失败，请填写完整信息");
     }
   });
 }

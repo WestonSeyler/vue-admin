@@ -1,6 +1,9 @@
 <template>
   <n-layout-header bordered position="absolute">
-    <PageHeader v-model:collapsed="collapsed"></PageHeader>
+    <PageHeader v-model:collapsed="collapsed">
+      <!-- 头部菜单位 -->
+      <!-- <div @click="hanlder">111</div> -->
+    </PageHeader>
   </n-layout-header>
   <n-layout class="layout" has-sider position="absolute">
     <n-layout-sider
@@ -46,11 +49,26 @@
           "
         >
           <router-view></router-view>
+          <div id="micro-container"></div>
         </n-card>
       </div>
     </n-layout>
+    <!-- <n-layout-footer
+      bordered
+      style="height: 64px; padding: 24px;background:#fff"
+    >
+      城府路
+    </n-layout-footer> -->
+    <!-- <n-layout-footer
+      bordered
+      position="absolute"
+      style="height: 64px; padding: 24px"
+    >
+      城府路
+    </n-layout-footer> -->
   </n-layout>
 </template>
+
 <script lang="ts" setup>
 import { h, ref, defineComponent, computed, onMounted, unref } from "vue";
 import { useProjectSetting } from "@/hooks/setting/useProjectSetting";
@@ -61,6 +79,8 @@ import { PageHeader } from "./components/Header";
 import { AsideMenu } from "./components/Menu";
 import { useRoute, useRouter } from "vue-router";
 import { getMenuList } from "@/api/system/menu";
+import { useEventbus } from "@/utils/eventBus";
+
 const { getMenuSetting, getCrumbsSetting } = useProjectSetting();
 const settingStore = useProjectSettingStore();
 const router = useRouter();
@@ -72,6 +92,8 @@ const leftMenuWidth = computed(() => {
   const { minMenuWidth, menuWidth } = unref(getMenuSetting) as any;
   return collapsed.value ? minMenuWidth : menuWidth;
 });
+
+//@ts-ignore
 const CrumbsShow = computed(() => getCrumbsSetting.value.show);
 const watchWidth = () => {
   const Width = document.body.clientWidth;
@@ -128,10 +150,19 @@ function formatMenu(root: any[]) {
       item.children[0].node.resourceType == "MENU"
     ) {
       // Recursion
+      //@ts-ignore
       currentMenu.children = formatMenu(item.children);
     }
     return currentMenu;
   });
+}
+function hanlder() {
+  const { customOn } = useEventbus();
+  //自定义事件发射
+  // customOn("aaaa", () => {
+
+  // });
+  console.log(1111);
 }
 onMounted(() => {
   window.addEventListener("resize", watchWidth);
@@ -146,6 +177,7 @@ onMounted(() => {
     //@ts-ignore
     menuList.value.push(...results);
   });
+
   //挂载在 window 方便与在js中使用
   //@ts-ignore
   // window["$loading"] = useLoadingBar();
